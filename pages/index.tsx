@@ -1,14 +1,20 @@
+import { SubscriptionForm } from '@/components/SubscriptionForm';
+import { MainLayout } from '@/components/layout/MainLayout';
 import Head from 'next/head';
-import Image from 'next/image';
 
 export default function Home() {
   return (
     <div className='flex h-screen'>
       <Head>
-        <title>Create Next App</title>
+        <title>Buy me a coffee</title>
       </Head>
 
-      <main className='flex bg-black'></main>
+      <MainLayout
+        banner={<MainLayout.Banner />}
+        userInfo={<MainLayout.UserInfo />}
+        timeline={<div>Timeline</div>}
+        subscriptions={<SubscriptionForm />}
+      />
     </div>
   );
 }
