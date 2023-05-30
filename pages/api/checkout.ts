@@ -41,11 +41,11 @@ export default async function handler(
         },
       ],
       success_url: `${req.headers.origin}/thank-you`,
-      cancel_url: '/cancel',
+      cancel_url: `${req.headers.origin}/cancel`,
     });
 
     if (url) {
-      res.status(200).json({ url });
+      return res.status(200).json({ url });
     }
     res.status(500).json({ message: 'Something went wrong!' });
   } catch (e) {

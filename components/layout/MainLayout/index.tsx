@@ -9,12 +9,14 @@ export const MainLayout = ({
   banner,
   userInfo,
   timeline,
-  subscriptions,
+  donationsForm,
+  donationsList,
 }: {
   banner?: ReactNode;
   userInfo: ReactNode;
   timeline: ReactNode;
-  subscriptions: ReactNode;
+  donationsForm: ReactNode;
+  donationsList: ReactNode;
 }) => {
   return (
     <div className='flex flex-col w-full h-screen'>
@@ -35,7 +37,10 @@ export const MainLayout = ({
       <Container>
         <div className='flex-1 py-6 grid grid-cols-6 gap-4'>
           <div className='col-span-4'>{timeline}</div>
-          <div className='col-span-2'>{subscriptions}</div>
+          <div className='col-span-2'>
+            <div className='mb-4'>{donationsForm}</div>
+            <div className=''>{donationsList}</div>
+          </div>
         </div>
       </Container>
     </div>

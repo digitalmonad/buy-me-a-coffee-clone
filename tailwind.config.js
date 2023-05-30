@@ -10,8 +10,8 @@ module.exports = {
     extend: {
       colors: {
         paper: colors.white,
-        primary: colors.orange,
-        typography: colors.gray[700],
+        primary: colors.slate,
+        typography: colors.gray,
       },
     },
   },

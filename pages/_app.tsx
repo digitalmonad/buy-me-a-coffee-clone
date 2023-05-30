@@ -1,12 +1,23 @@
 import '@/styles/global.css';
-import type { AppProps } from 'next/app';
-import { Poppins } from 'next/font/google';
 
-const inter = Poppins({ subsets: ['latin'], weight: '600' });
+import type { AppProps } from 'next/app';
+import { Barlow_Condensed, Roboto } from 'next/font/google';
+
+const barlowCondensed = Barlow_Condensed({
+  weight: '700',
+  subsets: ['latin'],
+  variable: '--font-barlow-condensed',
+});
+const inter = Roboto({
+  weight: ['400', '700'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  display: 'swap',
+});
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <main className={inter.className}>
+    <main className={`${inter.className} text-sm font-medium`}>
       <Component {...pageProps} />{' '}
     </main>
   );

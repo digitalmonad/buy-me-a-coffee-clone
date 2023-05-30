@@ -1,4 +1,5 @@
 import { DONATION_IN_CENTS, MAX_DONATION_IN_CENTS } from 'config';
+
 import {
   ChangeEvent,
   ChangeEventHandler,
@@ -7,8 +8,20 @@ import {
   useState,
 } from 'react';
 
-export const SubscriptionForm = () => {
-  const [quantity, setQuantity] = useState(0);
+export type TDonationFormProps = {
+  onDonation: ({
+    quantity,
+    name,
+    message,
+  }: {
+    quantity: number;
+    name: string;
+    message: string;
+  }) => void;
+};
+
+export const DonationForm = ({ onDonation }: TDonationFormProps) => {
+  const [quantity, setQuantity] = useState(1);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [name, setName] = useState('');
@@ -50,18 +63,22 @@ export const SubscriptionForm = () => {
     }
   };
 
+  const handleDonateButtonClick = () => {
+    onDonation({ quantity, name, message });
+  };
+
   return (
-    <div className='bg-paper p-3'>
-      <h1 className='mb-3 text-2xl'>Buy Elon a cup of coffee</h1>
+    <div className='bg-paper p-3 border rounded-md border-gray-200'>
+      <h3 className='mb-3 text-lg font-bold'>Buy me a cup of coffee</h3>
       <div className='mb-3 flex items-center bg-primary-50 p-4 rounded-sm border border-primary-200'>
         <span className='text-4xl'>☕</span>
         <span className='mx-3'>x</span>
         {presets.map((preset) => (
           <button
             key={preset}
-            className={`h-10 w-10 rounded-full bg-white mx-1 text-primary-400 border border-primary-200 transition-colors ${
+            className={`h-10 w-10 rounded-full bg-white mx-1 text-primary-800 border border-primary-200 transition-colors ${
               preset === quantity &&
-              '!text-white !bg-primary-400 !border-primary-400 '
+              '!text-white !bg-primary-800 !border-primary-400 border-none'
             }`}
             onClick={handleSelectQuantity(preset)}
           >
@@ -85,7 +102,7 @@ export const SubscriptionForm = () => {
         </label>
         <input
           placeholder='Type your name'
-          className='mb-3 p-2 w-full rounded-sm border border-gray-200 bg-gray-100'
+          className='mb-3 p-2 w-full rounded-sm border border-gray-200 bg-slate-100'
           type='text'
           id='name'
           value={name}
@@ -98,8 +115,8 @@ export const SubscriptionForm = () => {
         </label>
         <textarea
           style={{ resize: 'none' }}
-          placeholder='Type your name'
-          className='mb-3 p-2 w-full rounded-sm border border-gray-200 bg-gray-100'
+          placeholder='Leave me a message (if you want)...'
+          className='mb-3 p-2 w-full rounded-sm border border-gray-200 bg-slate-100'
           id='message'
           value={message}
           onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -107,7 +124,10 @@ export const SubscriptionForm = () => {
           }}
         />
       </div>
-      <button className='p-3 text-white rounded-full bg-primary-400 w-full hover:bg-primary-300 transition-colors'>
+      <button
+        onClick={handleDonateButtonClick}
+        className='p-3 text-white font-bold rounded-md bg-green-400 w-full border border-green-500 hover:bg-green-300 transition-colors'
+      >
         Donate {(quantity * DONATION_IN_CENTS) / 100} $
       </button>
     </div>
