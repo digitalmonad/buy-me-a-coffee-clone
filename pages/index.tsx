@@ -1,6 +1,7 @@
 import { DonationForm } from '@/components/features/donations/DonationForm';
 import { MainLayout } from '@/components/layout/MainLayout';
 import { DonationsList } from '@/components/features/donations/DonationsList';
+import { UserInfo } from '@/components/UserInfo';
 import {
   AIRTABLE_DONATIONS_TABLE_URL,
   AIRTABLE_SECRET_API_TOKEN,
@@ -51,11 +52,16 @@ export default function Home({ donations }: THomeProps) {
       </Head>
 
       <MainLayout
-        banner={<MainLayout.Banner />}
-        userInfo={<MainLayout.UserInfo />}
+        userInfo={
+          <UserInfo
+            name='Elon'
+            avatarUrl='/musk-avatar.jpg'
+            occupancy='I blog about entrepreneurship'
+          />
+        }
         timeline={<div>Timeline</div>}
         donationsForm={<DonationForm onDonation={handleDonation} />}
-        donationsList={<DonationsList {...{ donations }}></DonationsList>}
+        donationsList={<DonationsList {...{ donations }} />}
       />
     </div>
   );
