@@ -9,6 +9,8 @@ import {
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { TDonation, TDonationsApiResponse } from 'types';
+import { Timeline } from '@/components/Timeline';
+import { articles } from '../data/articles';
 
 export type THomeProps = {
   donations: TDonation[];
@@ -59,7 +61,7 @@ export default function Home({ donations }: THomeProps) {
             occupancy='I blog about entrepreneurship'
           />
         }
-        timeline={<div>Timeline</div>}
+        timeline={<Timeline {...{ articles }} />}
         donationsForm={<DonationForm onDonation={handleDonation} />}
         donationsList={<DonationsList {...{ donations }} />}
       />

@@ -72,7 +72,7 @@ export const DonationForm = ({ onDonation }: TDonationFormProps) => {
       <h3 className='mb-3 text-lg font-bold'>Buy me a cup of coffee</h3>
       <div className='mb-3 flex items-center bg-primary-50 p-4 rounded-sm border border-primary-200'>
         <span className='text-4xl'>☕</span>
-        <span className='mx-3'>x</span>
+        <span className='mx-2'>x</span>
         {presets.map((preset) => (
           <button
             key={preset}
@@ -93,7 +93,7 @@ export const DonationForm = ({ onDonation }: TDonationFormProps) => {
           max={MAX_DONATION_IN_CENTS / DONATION_IN_CENTS}
           onChange={handleQuantityChange}
           onBlur={handleQuantityBlur}
-          className='ml-3 py-2 px-1 text-end border border-gray-200 rounded-sm'
+          className='ml-3 py-2  text-end border border-gray-200 rounded-sm'
         />
       </div>
       <div>

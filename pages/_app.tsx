@@ -8,7 +8,7 @@ const barlowCondensed = Barlow_Condensed({
   subsets: ['latin'],
   variable: '--font-barlow-condensed',
 });
-const inter = Roboto({
+const roboto = Roboto({
   weight: ['400', '700'],
   style: ['normal', 'italic'],
   subsets: ['latin'],
@@ -17,7 +17,7 @@ const inter = Roboto({
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <main className={`${inter.className} text-sm font-medium`}>
+    <main className={`${roboto.className} text-sm font-medium`}>
       <Component {...pageProps} />{' '}
     </main>
   );
