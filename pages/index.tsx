@@ -16,7 +16,7 @@ export type THomeProps = {
   donations: TDonation[];
 };
 
-export default function Home({ donations }: THomeProps) {
+export default function Home({ donations = [] }: THomeProps) {
   const router = useRouter();
 
   const handleDonation = async ({
@@ -70,26 +70,32 @@ export default function Home({ donations }: THomeProps) {
 }
 
 export const getServerSideProps = async () => {
-  const response = await fetch(AIRTABLE_DONATIONS_TABLE_URL, {
-    headers: {
-      Authorization: `Bearer ${AIRTABLE_SECRET_API_TOKEN}`,
-      'Content-Type': 'application/json',
-    },
-  });
+  let donations;
 
-  const res: TDonationsApiResponse = await response.json();
+  try {
+    const response = await fetch(AIRTABLE_DONATIONS_TABLE_URL, {
+      headers: {
+        Authorization: `Bearer ${AIRTABLE_SECRET_API_TOKEN}`,
+        'Content-Type': 'application/json',
+      },
+    });
 
-  const donations = res.records.map(({ createdTime, id, fields }, index) => ({
-    createdTime,
-    name: fields.name,
-    amount: fields.amount,
-    message: fields?.message || '',
-    id,
-  }));
+    const res: TDonationsApiResponse = await response.json();
+
+    donations = res.records.map(({ createdTime, id, fields }, index) => ({
+      createdTime,
+      name: fields.name,
+      amount: fields.amount,
+      message: fields?.message || '',
+      id,
+    }));
+  } catch (error) {
+    console.log(error);
+  }
 
   return {
     props: {
-      donations,
+      donations: donations,
     },
   };
 };
