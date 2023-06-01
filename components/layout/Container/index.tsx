@@ -1,9 +1,10 @@
 import React, { PropsWithChildren } from 'react';
 
-export const Container = ({ children }: PropsWithChildren) => {
+export const Container = ({
+  children,
+  className,
+}: PropsWithChildren<{ className?: string }>) => {
   return (
-    <div className='lg:max-w-7xl flex h-full w-full flex-col mx-auto'>
-      {children}
-    </div>
+    <div className={`max-w-5xl mx-auto ${className || ''}`}>{children}</div>
   );
 };

@@ -16,18 +16,21 @@ export const MainLayout = ({
   return (
     <div className='flex flex-col w-full h-screen'>
       <Header />
-      <div className='pt-10'>
-        <Container>
-          <div className='py-6 grid grid-cols-12 gap-4'>
-            <div className='col-span-9'>{timeline}</div>
-            <div className='col-span-3'>
+
+      <Container className=''>
+        <div className='grid grid-cols-12 gap-4 -mt-10'>
+          <div className='col-span-8'>
+            <div className='pt-16'>{timeline}</div>
+          </div>
+          <div className='col-span-4'>
+            <div className='sticky pt-16 top-0 min-w-[320px]'>
               <div className='mb-4'>{userInfo}</div>
               <div className='mb-4'>{donationsForm}</div>
               <div className=''>{donationsList}</div>
             </div>
           </div>
-        </Container>
-      </div>
+        </div>
+      </Container>
     </div>
   );
 };
